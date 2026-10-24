@@ -5,7 +5,6 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 10px;
 `;
 
 export const Session = styled.div`
@@ -199,7 +198,7 @@ export const TestimonialsSession = styled.div`
   flex-direction: column;
   background-color: #890000;
 
-  > div:nth-child(1) {
+  > div:first-child {
     display: flex;
     flex-direction: column;
     color: #fff;
@@ -209,12 +208,123 @@ export const TestimonialsSession = styled.div`
     }
 
     > h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
+      font-size: 3rem;
+      font-weight: 600;
     }
   }
 `;
 
-export const Testimonials = styled.div`
+export const VideoSession = styled.div`
+  padding: 100px;
   display: flex;
+  background-color: #890000;
+  color: #fff;
+  border-top: solid 1px lightgrey;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 600;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+
+  button {
+    background-color: #fff;
+    margin-top: 50px;
+    color: #000;
+    font-size: 1.2rem;
+    padding: 7px 10px;
+    border: solid 1px lightgrey;
+    border-radius: 7px;
+    font-weight: 500;
+  }
+
+  > div {
+    flex: 1;
+
+    & + div {
+      padding: 30px;
+      flex: 2;
+      position: relative;
+      width: 100%;
+
+      img:first-child {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100px;
+        height: 100px;
+        cursor: pointer;
+      }
+    }
+  }
+`;
+
+export const Footer = styled.div`
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  background-color: #1d0300;
+  color: #fff;
+  justify-content: space-between;
+  height: 500px;
+`;
+
+export const Top = styled.div`
+  display: flex;
+  justify-content: space-between;
+  max-width: 1500px;
+
+  h1 {
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+
+  p {
+    font-weight: 200;
+    font-size: 0.9rem;
+    color: lightgray;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    cursor: pointer;
+  }
+`;
+
+export const FooterLogo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`;
+
+export const Bottom = styled.div`
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  p {
+    font-weight: 200;
+    font-size: 0.9rem;
+    color: lightgray;
+  }
+
+  div:first-child {
+    display: flex;
+    gap: 10px;
+  }
+
+  div:nth-child(2) {
+    display: flex;
+  }
 `;

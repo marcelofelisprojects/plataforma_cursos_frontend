@@ -5,14 +5,24 @@ import { Slider } from '@chakra-ui/react';
 import Carousel from '@components/Carousel';
 import ProfessoresRed from 'src/assets/images/02-professores-red.svg';
 import SuporteRed from 'src/assets/images/03-suporte-red.svg';
+import VideoThumb from 'src/assets/images/video-thumb.png';
+import PlayButton from 'src/assets/images/play-button.svg';
+import SesiIndustriaWhite from 'src/assets/images/logo-sesi-industria-white.svg';
+import LogoSesi from 'src/assets/images/logo-sesi.svg';
+import LogoLinkedin from 'src/assets/images/icon-linkedIn-24px.svg';
+import LogoInstagram from 'src/assets/images/icon-instagram-24px.svg';
+import LogoFacebook from 'src/assets/images/icon-facebook-24px.svg';
 import CouseCard from '@components/CourseCard';
 import TestimonalCard from '@components/TestimonialCard';
 import {
   BannerSession,
+  Bottom,
   Column,
   Container,
   CoursesSession,
   DetailsSession,
+  Footer,
+  FooterLogo,
   Header,
   InfoSession,
   Navbar,
@@ -20,6 +30,8 @@ import {
   StatsSession,
   TestimonialsSession,
   Title,
+  Top,
+  VideoSession,
 } from './styles';
 
 const Home: React.FC = () => {
@@ -131,7 +143,7 @@ const Home: React.FC = () => {
         </div>
         <Carousel card={TestimonalCard} />
       </TestimonialsSession>
-      <Session>
+      <VideoSession>
         <div>
           <h1>Pronto para transformar sua carreira?</h1>
           <p>
@@ -141,16 +153,17 @@ const Home: React.FC = () => {
           <button>Matricule-se</button>
         </div>
         <div>
-          <h1>Vídeo</h1>
+          <img src={VideoThumb} alt="Pronto para transformar sua carreira?" />
+          <img src={PlayButton} alt="Play" className="play-button" />
         </div>
-      </Session>
-      <Session>
-        <div>
-          <div>
-            <h1>LOGO SESI + INDÚSTRIA</h1>
+      </VideoSession>
+      <Footer>
+        <Top>
+          <FooterLogo>
+            <img src={SesiIndustriaWhite} alt="logo" />
             <p>contato@sesindustria.com.br</p>
             <p>Av. Paulista, 1313</p>
-          </div>
+          </FooterLogo>
           <div>
             <h1>NAVEGAÇÃO</h1>
             <p>Início</p>
@@ -177,16 +190,19 @@ const Home: React.FC = () => {
             <p>Fale Conosco</p>
             <p>Central de Ajuda</p>
           </div>
-        </div>
-        <div>
+        </Top>
+        <Bottom>
           <div>
-            <h1>logo sesi todos os direitos reservados</h1>
+            <img src={LogoSesi} alt="Sesi" />
+            <p>Todos os direitos reservados</p>
           </div>
           <div>
-            <h1>redes sociais</h1>
+            <img src={LogoLinkedin} alt="Linkedin" />
+            <img src={LogoInstagram} alt="Instagram" />
+            <img src={LogoFacebook} alt="Facebook" />
           </div>
-        </div>
-      </Session>
+        </Bottom>
+      </Footer>
     </Container>
   );
 };
