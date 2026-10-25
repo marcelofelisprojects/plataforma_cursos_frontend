@@ -1,3 +1,3 @@
 export enum PublicPathsEnum {
-  LOGIN = '/app/login',
+  LOGIN = '/login',
 }

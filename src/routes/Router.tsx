@@ -20,12 +20,12 @@ const ProtectedRoute = () => (
   //   return <Navigate to="/app/login" replace />;
   // }
 
-  <Navigate to={PrivatePathsEnum.COURSE} replace />
+  <Navigate to={PrivatePathsEnum.HOME} replace />
 );
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route errorElement={<ErrorBoundary />} path="/app">
+      <Route errorElement={<ErrorBoundary />}>
         {PrivateRoutes}
         {PublicRoutes}
       </Route>

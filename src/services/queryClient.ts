@@ -9,6 +9,5 @@ export const queryClient = new QueryClient({
 });
 
 export enum QueryKeys {
-  USERS = 'USERS',
-  APPLICATIONS = 'APPLICATIONS',
+  COURSES = 'COURSES',
 }

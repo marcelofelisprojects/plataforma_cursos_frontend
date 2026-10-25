@@ -56,7 +56,7 @@ export const BannerSession = styled.div`
       rgba(134, 4, 15, 0.7),
       rgba(134, 4, 15, 0.7)
     ),
-    url('/src/assets/images/hero-image.png');
+    url(${(props) => props.bgImage});
 
   background-size: cover;
   background-position: center;

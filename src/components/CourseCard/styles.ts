@@ -8,7 +8,7 @@ export const Container = styled.div`
       rgba(134, 4, 15, 0.8) 55%,
       rgba(0, 0, 0, 0) 100%
     ),
-    url('/src/assets/images/banner-ava.png');
+    url(${(props) => props.bgImage});
 
   background-size: cover;
   background-position: center;

@@ -13,6 +13,7 @@ import LogoInstagram from 'src/assets/images/icon-instagram-24px.svg';
 import LogoFacebook from 'src/assets/images/icon-facebook-24px.svg';
 import CouseCard from '@components/CourseCard';
 import TestimonalCard from '@components/TestimonialCard';
+import heroImage from '../../../../assets/images/hero-image.png';
 import {
   BannerSession,
   Bottom,
@@ -40,7 +41,7 @@ const Home: React.FC = () => {
 
   return (
     <Container>
-      <BannerSession>
+      <BannerSession bgImage={heroImage}>
         <Header>
           <img src={SesiIndustriaPrimary} alt="logo" />
           <Navbar>
@@ -143,7 +144,7 @@ const Home: React.FC = () => {
         <Carousel
           // eslint-disable-next-line react/no-unstable-nested-components
           card={() => (
-            <TestimonalCard background_color="PiBluetooth" text_color="red" />
+            <TestimonalCard background_color="#c3222c" text_color="#fff" />
           )}
         />
       </TestimonialsSession>

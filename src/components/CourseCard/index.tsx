@@ -1,9 +1,10 @@
 import React from 'react';
 import Matematica from 'src/assets/images/icon-matematica-20px.svg';
+import BannerAva from 'src/assets/images/banner-ava.png';
 import { Container, Content, Tag } from './styles';
 
 const CouseCard: React.FC = () => (
-  <Container>
+  <Container bgImage={BannerAva}>
     <Tag>
       <img src={Matematica} alt="matemática" />
       <p>MATEMÁTICA</p>
