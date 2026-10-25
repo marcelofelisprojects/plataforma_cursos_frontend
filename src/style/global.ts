@@ -48,7 +48,7 @@ export default createGlobalStyle`
     text-rendering: optimizeLegibility !important;
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
+
   }
 
   h1,h2,h3,h4,strong{

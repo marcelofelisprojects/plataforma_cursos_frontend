@@ -37,7 +37,7 @@ import {
 
 const AboutCourse: React.FC = () => {
   useEffect(() => {
-    document.title = 'Curso';
+    document.title = 'Sobre o Curso';
   }, []);
 
   return (
