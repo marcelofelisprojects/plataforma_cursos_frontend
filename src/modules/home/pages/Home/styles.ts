@@ -220,52 +220,38 @@ export const VideoSession = styled.div`
   background-color: #890000;
   color: #fff;
   border-top: solid 1px lightgrey;
+  gap: 30px;
 
-  h1 {
-    font-size: 3rem;
-    font-weight: 600;
-  }
-
-  p {
-    font-size: 1.5rem;
-  }
-
-  button {
-    background-color: #fff;
-    margin-top: 50px;
-    color: #000;
-    font-size: 1.2rem;
-    padding: 7px 10px;
-    border: solid 1px lightgrey;
-    border-radius: 7px;
-    font-weight: 500;
-  }
-
-  > div {
-    flex: 1;
-
-    & + div {
-      padding: 30px;
-      flex: 2;
-      position: relative;
-      width: 100%;
-
-      img:first-child {
-        display: block;
-        width: 100%;
-        height: auto;
-      }
-
-      .play-button {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100px;
-        height: 100px;
-        cursor: pointer;
-      }
+  > div:first-child {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    h1 {
+      font-size: 3vw;
+      line-height: 1.1;
     }
+
+    p {
+      font-size: 2vw;
+    }
+
+    button {
+      background-color: #fff;
+      margin-top: 50px;
+      color: #000;
+      font-size: 1.2rem;
+      padding: 7px 10px;
+      border: solid 1px lightgrey;
+      border-radius: 7px;
+      font-weight: 500;
+      width: fit-content;
+    }
+  }
+
+  > div:nth-child(2) {
+    padding: 20px;
+    flex: 3;
   }
 `;
 

@@ -52,6 +52,6 @@ export const Tag = styled.div`
   margin-bottom: auto;
 
   p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 `;

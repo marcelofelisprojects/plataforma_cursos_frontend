@@ -6,7 +6,6 @@ import Carousel from '@components/Carousel';
 import ProfessoresRed from 'src/assets/images/02-professores-red.svg';
 import SuporteRed from 'src/assets/images/03-suporte-red.svg';
 import VideoThumb from 'src/assets/images/video-thumb.png';
-import PlayButton from 'src/assets/images/play-button.svg';
 import SesiIndustriaWhite from 'src/assets/images/logo-sesi-industria-white.svg';
 import LogoSesi from 'src/assets/images/logo-sesi.svg';
 import LogoLinkedin from 'src/assets/images/icon-linkedIn-24px.svg';
@@ -141,7 +140,12 @@ const Home: React.FC = () => {
           <p>DEPOIMENTOS</p>
           <h1>Quem fez recomenda</h1>
         </div>
-        <Carousel card={TestimonalCard} />
+        <Carousel
+          // eslint-disable-next-line react/no-unstable-nested-components
+          card={() => (
+            <TestimonalCard background_color="PiBluetooth" text_color="red" />
+          )}
+        />
       </TestimonialsSession>
       <VideoSession>
         <div>
@@ -154,7 +158,6 @@ const Home: React.FC = () => {
         </div>
         <div>
           <img src={VideoThumb} alt="Pronto para transformar sua carreira?" />
-          <img src={PlayButton} alt="Play" className="play-button" />
         </div>
       </VideoSession>
       <Footer>

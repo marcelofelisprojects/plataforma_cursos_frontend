@@ -9,7 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 interface ICarouselProps {
-  card: React.ComponentType;
+  card: React.ComponentType<any>;
 }
 
 export default function Carousel({ card: Card }: ICarouselProps) {

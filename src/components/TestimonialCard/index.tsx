@@ -1,8 +1,13 @@
 import React from 'react';
 import { Container } from './styles';
 
-const TestimonalCard: React.FC = () => (
-  <Container>
+interface IProps {
+  text_color: string;
+  background_color: string;
+}
+
+const TestimonalCard: React.FC<IProps> = ({ text_color, background_color }) => (
+  <Container background={background_color} color={text_color}>
     <div>
       <p>
         A experência do curso foi incrível! As aulas foram muito bem

@@ -1,10 +1,15 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  background-color: #c3222c;
+interface IContainerProps {
+  background: string;
+  color: string;
+}
+
+export const Container = styled.div<IContainerProps>`
+  background-color: ${({ background }) => background};
   padding: 20px;
   height: 400px;
-  color: #fff;
+  color: ${({ color }) => color};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -25,7 +30,6 @@ export const Container = styled.div`
     p {
       font-size: 0.9rem;
       font-weight: 100;
-      color: lightpink;
     }
   }
 `;
