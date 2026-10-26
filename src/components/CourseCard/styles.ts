@@ -8,7 +8,7 @@ export const Container = styled.div`
       rgba(134, 4, 15, 0.8) 55%,
       rgba(0, 0, 0, 0) 100%
     ),
-    url(${(props) => props.bgImage});
+    url(${(props) => props.bgimage});
 
   background-size: cover;
   background-position: center;

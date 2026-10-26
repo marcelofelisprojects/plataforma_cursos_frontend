@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+/* eslint-disable react/no-unstable-nested-components */
+import React, { useEffect, useMemo, useState } from 'react';
 import SesiIndustriaPrimary from 'src/assets/images/logo-sesi-industria-primary.svg';
 import CertificacaoRed from 'src/assets/images/01-certificacao-red.svg';
-import { Slider } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react'; // Trocado Slider por Box
 import Carousel from '@components/Carousel';
 import ProfessoresRed from 'src/assets/images/02-professores-red.svg';
 import SuporteRed from 'src/assets/images/03-suporte-red.svg';
@@ -11,8 +12,12 @@ import LogoSesi from 'src/assets/images/logo-sesi.svg';
 import LogoLinkedin from 'src/assets/images/icon-linkedIn-24px.svg';
 import LogoInstagram from 'src/assets/images/icon-instagram-24px.svg';
 import LogoFacebook from 'src/assets/images/icon-facebook-24px.svg';
-import CouseCard from '@components/CourseCard';
+import CourseCard from '@components/CourseCard';
 import TestimonalCard from '@components/TestimonialCard';
+import { ICourse } from '@modules/Courses/interfaces/ICourse';
+import { useCourse } from '@modules/Courses/hooks/courses';
+// import { useNavigate } from 'react-router-dom';
+import { testimonials } from '@modules/Courses/interfaces/ITestimonial';
 import heroImage from '../../../../assets/images/hero-image.png';
 import {
   BannerSession,
@@ -38,10 +43,41 @@ const Home: React.FC = () => {
   useEffect(() => {
     document.title = 'Home';
   }, []);
+  const { GetCourses } = useCourse();
+
+  const { data } = GetCourses();
+  // const navigate = useNavigate();
+
+  const [courses, setCourses] = useState<ICourse[]>();
+
+  const renderCourseCards = useMemo(() => {
+    if (!courses) return [];
+    return courses.map((course) => (
+      <CourseCard key={course.id} course={course} />
+    ));
+  }, [courses]);
+
+  const renderTestimonialCards = useMemo(() => {
+    if (!testimonials) return [];
+    return testimonials.map((testimonial) => (
+      <TestimonalCard
+        key={testimonial.id}
+        testimonial={testimonial}
+        background_color="#c3222c"
+        text_color="#fff"
+      />
+    ));
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      setCourses(data);
+    }
+  }, [data]);
 
   return (
     <Container>
-      <BannerSession bgImage={heroImage}>
+      <BannerSession bgimage={heroImage}>
         <Header>
           <img src={SesiIndustriaPrimary} alt="logo" />
           <Navbar>
@@ -71,15 +107,18 @@ const Home: React.FC = () => {
         </Session>
       </BannerSession>
 
-      <CoursesSession>
-        <h1>Principais cursos</h1>
-        <Slider display="flex">
-          <Carousel card={CouseCard} />
-        </Slider>
-        <div>
-          <button>Ver todos os cursos</button>
-        </div>
-      </CoursesSession>
+      {courses && courses.length > 0 && (
+        <CoursesSession>
+          <h1>Principais cursos</h1>
+          <Box display="flex" width="100%">
+            <Carousel cards={renderCourseCards} />
+          </Box>
+          <div>
+            <button>Ver todos os cursos</button>
+          </div>
+        </CoursesSession>
+      )}
+
       <InfoSession>
         <Column>
           <h1>Impacto transformador</h1>
@@ -136,18 +175,15 @@ const Home: React.FC = () => {
           </DetailsSession>
         </Column>
       </InfoSession>
-      <TestimonialsSession>
-        <div>
-          <p>DEPOIMENTOS</p>
-          <h1>Quem fez recomenda</h1>
-        </div>
-        <Carousel
-          // eslint-disable-next-line react/no-unstable-nested-components
-          card={() => (
-            <TestimonalCard background_color="#c3222c" text_color="#fff" />
-          )}
-        />
-      </TestimonialsSession>
+      {testimonials && testimonials.length > 0 && (
+        <TestimonialsSession>
+          <div>
+            <p>DEPOIMENTOS</p>
+            <h1>Quem fez recomenda</h1>
+          </div>
+          <Carousel cards={renderTestimonialCards} />
+        </TestimonialsSession>
+      )}
       <VideoSession>
         <div>
           <h1>Pronto para transformar sua carreira?</h1>

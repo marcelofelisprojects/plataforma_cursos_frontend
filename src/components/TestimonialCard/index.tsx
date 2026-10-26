@@ -1,23 +1,25 @@
 import React from 'react';
+import { ITestimonial } from '@modules/Courses/interfaces/ITestimonial';
 import { Container } from './styles';
 
 interface IProps {
   text_color: string;
   background_color: string;
+  testimonial: ITestimonial;
 }
 
-const TestimonalCard: React.FC<IProps> = ({ text_color, background_color }) => (
+const TestimonalCard: React.FC<IProps> = ({
+  text_color,
+  background_color,
+  testimonial,
+}) => (
   <Container background={background_color} color={text_color}>
     <div>
-      <p>
-        A experência do curso foi incrível! As aulas foram muito bem
-        estruturadas e o cronograma foi cuidadosamente planejado, facilitando
-        muito o aprendizado.
-      </p>
+      <p>{testimonial.testimonial}</p>
     </div>
     <div>
-      <h2>Lucas Pereira</h2>
-      <p>Analista na Empresa X</p>
+      <h2>{testimonial.name}</h2>
+      <p>{testimonial.position}</p>
     </div>
   </Container>
 );

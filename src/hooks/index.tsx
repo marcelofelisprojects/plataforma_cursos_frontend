@@ -2,6 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
 import themeDefaults from '@style/themeDefaults';
+import { CourseProvider } from '@modules/Courses/hooks/courses';
 import { ChakraProvider } from './ChakraProvider';
 import { ToastProvider } from './ToastProvider';
 
@@ -18,7 +19,9 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => (
   <ThemeProvider theme={themeDefaults}>
     <ChakraProvider>
       <AnimatePresence>
-        <ToastProvider>{children}</ToastProvider>
+        <ToastProvider>
+          <CourseProvider>{children}</CourseProvider>
+        </ToastProvider>
       </AnimatePresence>
     </ChakraProvider>
   </ThemeProvider>

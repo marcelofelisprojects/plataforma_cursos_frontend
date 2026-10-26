@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import SesiIndustriaPrimary from 'src/assets/images/logo-sesi-industria-primary.svg';
 import CertificacaoBege from 'src/assets/images/01-certificacao-bege.svg';
 import Carousel from '@components/Carousel';
@@ -17,6 +17,7 @@ import CertificacaoPreto from 'src/assets/images/01-certificacao-preto.svg';
 import Calendario from 'src/assets/images/calendario.svg';
 import TestimonalCard from '@components/TestimonialCard';
 import { Tag } from '@components/CourseCard/styles';
+import { testimonials } from '@modules/Courses/interfaces/ITestimonial';
 import {
   Bottom,
   Column,
@@ -38,6 +39,18 @@ import {
 const AboutCourse: React.FC = () => {
   useEffect(() => {
     document.title = 'Sobre o Curso';
+  }, []);
+
+  const renderTestimonialCards = useMemo(() => {
+    if (!testimonials) return [];
+    return testimonials.map((testimonial) => (
+      <TestimonalCard
+        key={testimonial.id}
+        testimonial={testimonial}
+        background_color="#fff"
+        text_color="auto"
+      />
+    ));
   }, []);
 
   return (
@@ -154,18 +167,15 @@ const AboutCourse: React.FC = () => {
           </StatsSession>
         </Column>
       </InfoSession>
-      <TestimonialsSession>
-        <div>
-          <p>DEPOIMENTOS</p>
-          <h1>Quem fez recomenda</h1>
-        </div>
-        <Carousel
-          // eslint-disable-next-line react/no-unstable-nested-components
-          card={() => (
-            <TestimonalCard background_color="#fff" text_color="auto" />
-          )}
-        />
-      </TestimonialsSession>
+      {testimonials && testimonials.length > 0 && (
+        <TestimonialsSession>
+          <div>
+            <p>DEPOIMENTOS</p>
+            <h1>Quem fez recomenda</h1>
+          </div>
+          <Carousel cards={renderTestimonialCards} />
+        </TestimonialsSession>
+      )}
       <Session>
         <p>PRECISA DE AJUDA PARA DECIDIR?</p>
         <h1>Fale com a gente</h1>
