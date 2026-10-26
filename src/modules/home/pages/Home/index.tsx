@@ -16,7 +16,6 @@ import CourseCard from '@components/CourseCard';
 import TestimonalCard from '@components/TestimonialCard';
 import { ICourse } from '@modules/Courses/interfaces/ICourse';
 import { useCourse } from '@modules/Courses/hooks/courses';
-// import { useNavigate } from 'react-router-dom';
 import { testimonials } from '@modules/Courses/interfaces/ITestimonial';
 import heroImage from '../../../../assets/images/hero-image.png';
 import {
@@ -43,10 +42,10 @@ const Home: React.FC = () => {
   useEffect(() => {
     document.title = 'Home';
   }, []);
+
   const { GetCourses } = useCourse();
 
   const { data } = GetCourses();
-  // const navigate = useNavigate();
 
   const [courses, setCourses] = useState<ICourse[]>();
 

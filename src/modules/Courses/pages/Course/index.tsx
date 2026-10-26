@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect } from 'react';
 import BannerAva from 'src/assets/images/banner-ava.png';
 import ArrowNavigation from 'src/assets/images/arrow-navigation.svg';
@@ -5,6 +7,9 @@ import Play from 'src/assets/images/play.svg';
 import CheckFilled from 'src/assets/images/check-filled.svg';
 import Check from 'src/assets/images/check.svg';
 import ProgressBar from '@components/ProgressBar';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { ICourse } from '@modules/Courses/interfaces/ICourse';
+import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import {
   Banner,
   Container,
@@ -18,20 +23,45 @@ import {
   Title,
 } from './styles';
 
+interface ILocationState {
+  course: ICourse;
+}
+
 const Course: React.FC = () => {
   useEffect(() => {
     document.title = 'Curso';
   }, []);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const state = location.state as ILocationState;
+
+  const { course } = state;
+
+  if (!state || !state.course) {
+    return (
+      <Container>
+        <p>Curso não encontrado ou dados não carregados corretamente.</p>
+      </Container>
+    );
+  }
+
   return (
     <Container>
       <SideMenu>
         <Nav>
-          <img src={ArrowNavigation} alt="Voltar" />
+          <img
+            src={ArrowNavigation}
+            alt="Voltar"
+            onClick={() =>
+              navigate(PrivatePathsEnum.ABOUTCOURSE, { state: { course } })
+            }
+          />
         </Nav>
         <Title>
-          <p>CERTIFICAÇÃO</p>
-          <h1>Matemática para a Precisão: Medidas e Escalas na Metalurgia</h1>
+          <p>{course.category.name.toUpperCase()}</p>
+          <h1>{course.name.toUpperCase()}</h1>
         </Title>
 
         <ProgressBar />
@@ -59,25 +89,25 @@ const Course: React.FC = () => {
             <h1>2. Módulo 1</h1>
           </Module>
           <Module>
-            <h1>2. Módulo 1</h1>
+            <h1>2. Módulo 2</h1>
           </Module>
           <Module>
-            <h1>2. Módulo 1</h1>
+            <h1>2. Módulo 3</h1>
           </Module>
           <Module>
-            <h1>2. Módulo 1</h1>
+            <h1>2. Módulo 4</h1>
           </Module>
           <Module>
-            <h1>2. Módulo 1</h1>
+            <h1>2. Módulo 5</h1>
           </Module>
           <Module>
-            <h1>2. Módulo 1</h1>
+            <h1>2. Módulo 6</h1>
           </Module>
           <Module>
-            <h1>2. Módulo 1</h1>
+            <h1>2. Módulo 7</h1>
           </Module>
           <Module>
-            <h1>2. Módulo 1</h1>
+            <h1>2. Módulo 8</h1>
           </Module>
         </Modules>
       </SideMenu>

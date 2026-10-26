@@ -5,7 +5,7 @@ import Carousel from '@components/Carousel';
 import ProfessoresBege from 'src/assets/images/02-professores-bege.svg';
 import SuporteBege from 'src/assets/images/03-suporte-bege.svg';
 import FlexibilidadeBege from 'src/assets/images/04-flexibilidade-bege.svg';
-
+import { format } from 'date-fns';
 import VideoThumb from 'src/assets/images/video-thumb.png';
 import SesiIndustriaWhite from 'src/assets/images/logo-sesi-industria-white.svg';
 import LogoSesi from 'src/assets/images/logo-sesi.svg';
@@ -16,8 +16,11 @@ import Matematica from 'src/assets/images/icon-matematica-20px.svg';
 import CertificacaoPreto from 'src/assets/images/01-certificacao-preto.svg';
 import Calendario from 'src/assets/images/calendario.svg';
 import TestimonalCard from '@components/TestimonialCard';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Tag } from '@components/CourseCard/styles';
 import { testimonials } from '@modules/Courses/interfaces/ITestimonial';
+import { ICourse } from '@modules/Courses/interfaces/ICourse';
+import { PrivatePathsEnum } from '@routes/privateRoutes/privatePaths';
 import {
   Bottom,
   Column,
@@ -36,6 +39,10 @@ import {
   VideoSession,
 } from './styles';
 
+interface ILocationState {
+  course: ICourse;
+}
+
 const AboutCourse: React.FC = () => {
   useEffect(() => {
     document.title = 'Sobre o Curso';
@@ -52,6 +59,20 @@ const AboutCourse: React.FC = () => {
       />
     ));
   }, []);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const state = location.state as ILocationState;
+
+  const { course } = state;
+
+  if (!state || !state.course) {
+    return (
+      <Container>
+        <p>Curso não encontrado ou dados não carregados corretamente.</p>
+      </Container>
+    );
+  }
 
   return (
     <Container>
@@ -76,17 +97,19 @@ const AboutCourse: React.FC = () => {
         <div>
           <Tag>
             <img src={Matematica} alt="matemática" />
-            <p>MATEMÁTICA</p>
+            <p>{course.name}</p>
           </Tag>
           <div>
-            <h1>Matemática para a Precisão: Medidas e Escalas na Metalurgia</h1>
+            <h1>{course.fullName}</h1>
           </div>
           <div>
             <Info>
               <img src={Calendario} alt="Início" />
               <p>
                 Início do curso:
-                <span> 05/01/2026</span>
+                <span>
+                  {format(new Date(course.availableFrom), ' dd/MM/yyyy')}
+                </span>
               </p>
             </Info>
             <Info>
@@ -96,7 +119,15 @@ const AboutCourse: React.FC = () => {
               </p>
             </Info>
             <div>
-              <button>Matricule-se</button>
+              <button
+                onClick={() =>
+                  navigate(PrivatePathsEnum.COURSE, {
+                    state: { course },
+                  })
+                }
+              >
+                Matricule-se
+              </button>
             </div>
           </div>
         </div>
@@ -142,13 +173,7 @@ const AboutCourse: React.FC = () => {
       <InfoSession>
         <Column>
           <h1>Sobre o curso</h1>
-          <p>
-            Explore nosso curso de Matemética para a Precisão: Medidas e Escalas
-            na Metalurgia, perfeito para quem deseja se destacar nesse campo!
-            Este programa abrangente foi desenvolvido para capacitar
-            profissionais com as habilidades e conhecimentos fundamentais para
-            garantir medições precisas e eficientes no ambiente metalúrgico.
-          </p>
+          <p>{course.description}</p>
         </Column>
         <Column>
           <StatsSession>

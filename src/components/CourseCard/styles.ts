@@ -13,7 +13,7 @@ export const Container = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-
+  cursor: pointer;
   width: 300px;
   height: 400px;
   padding: 20px;
